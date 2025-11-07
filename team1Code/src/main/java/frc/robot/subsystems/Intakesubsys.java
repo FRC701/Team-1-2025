@@ -12,56 +12,42 @@ public class Intakesubsys extends SubsystemBase {
   
   //creating variables
   private TalonFX IntakeMotor;
-  public enum ShooterStates {
-    S_notshooting,S_Accelerating
-  }
-  public enum FeederStates {
-    F_spinning,F_filled
-  }
   public enum IntakeStates {
-    I_on,I_off
+    S_on,S_off
   }
 
   //defines states
-  public static ShooterStates s_States;
+  public static IntakeStates S_intake;
 
   //subsystem
   public Intakesubsys() {
     IntakeMotor = new TalonFX(0);
-    s_States = ShooterStates.S_notshooting;
+    S_intake = IntakeStates.S_off;
   }
 
   /* methods */
   public void SpinMotor(){
     IntakeMotor.setVoltage(4);
-  }
-
-  public void SpinFaster(){
-    IntakeMotor.setVoltage(12);
-  }
+  } //This makes the motor spin
 
   public void StopMoving(){
     IntakeMotor.setVoltage(0);
-  }
-
-  public void SpinLowVoltage(){
-    IntakeMotor.setVoltage(1);;
-  }
+  } //This makes the motor stop, duh
 
   //switchcase
   public void CheckShooterStates(){
-    switch (s_States) {
-      case S_notshooting:
+    switch (S_intake) {
+      case S_off:
         StopMoving();
         break;
-      case S_Accelerating:
-        SpinFaster();
+      case S_on:
+        SpinMotor();
         break;
     }
-  }
+  } //if state = off stop moving | if state = on start moving
 
   @Override
   public void periodic() {
- 
+    CheckShooterStates();
   }
 }

@@ -10,6 +10,9 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.LaunchingBlast;
+import frc.robot.commands.NotLaunching;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,7 +30,13 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
 
+  public ShooterSubsystem ShootSub;
+  public LaunchingBlast Shoot;
+  public NotLaunching Unshoot;
   public RobotContainer() {
+    ShootSub = new ShooterSubsystem();
+    Shoot = new LaunchingBlast(ShootSub);
+    Unshoot = new NotLaunching(ShootSub);
     configureBindings();
   }
 
@@ -41,7 +50,10 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
-    
+ 
+ m_driverController.a().onTrue(Shoot);
+ m_driverController.a().onFalse(Unshoot);
+ 
   }
 
   /**

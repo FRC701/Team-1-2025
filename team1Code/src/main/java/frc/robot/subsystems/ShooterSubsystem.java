@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.controls.Follower;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -11,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ShooterSubsystem extends SubsystemBase {
   /**creates new variables */
   private TalonFX ShooterMotor;
+  private TalonFX secondMotor;
   /** creates states */  
   public enum ShooterStates {
       S_NotLaunching, S_Launching
@@ -22,6 +24,8 @@ public class ShooterSubsystem extends SubsystemBase {
 /** ShooterSubsystem */
   public ShooterSubsystem() {
     ShooterMotor = new TalonFX(0);
+    secondMotor = new TalonFX(1);
+    ShooterMotor.setControl(new Follower(secondMotor.getDeviceID(), false));
   }
 /** Methods :3 */
   public void Notlaunching(){

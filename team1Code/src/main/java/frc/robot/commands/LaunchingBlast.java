@@ -22,6 +22,6 @@ public LaunchingBlast(ShooterSubsystem Sh){
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    LaunchBlast.Launching();
+    LaunchBlast.S_Shooter = ShooterStates.S_Launching;
   }
 }

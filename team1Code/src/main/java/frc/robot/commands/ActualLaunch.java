@@ -10,18 +10,17 @@ import frc.robot.subsystems.ShooterSubsystem;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class NotLaunching extends InstantCommand {
+public class ActualLaunch extends InstantCommand {
   
-    private ShooterSubsystem NotBlast;
-    
+
     /** connects subsystem to name, and sets that name to smth idrk */
-    public NotLaunching(ShooterSubsystem Nl){
-      NotBlast = Nl;
+    public ActualLaunch(){
+
     }
     
       // Called when the command is initially scheduled.
       @Override
       public void initialize() {
-        NotBlast.Notlaunching();
+
       }
     }
